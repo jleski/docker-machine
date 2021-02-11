@@ -3,6 +3,7 @@ package provision
 import (
 	"bytes"
 	"fmt"
+	"strings"
 	"text/template"
 
 	"github.com/docker/machine/libmachine/drivers"
@@ -21,10 +22,11 @@ func (p *SystemdProvisioner) String() string {
 func NewSystemdProvisioner(osReleaseID string, d drivers.Driver) SystemdProvisioner {
 	return SystemdProvisioner{
 		GenericProvisioner{
-			SSHCommander:      GenericSSHCommander{Driver: d},
-			DockerOptionsDir:  "/etc/docker",
-			DaemonOptionsFile: "/etc/systemd/system/docker.service.d/10-machine.conf",
-			OsReleaseID:       osReleaseID,
+			SSHCommander:       GenericSSHCommander{Driver: d},
+			DockerOptionsDir:   "/etc/docker",
+			DaemonOptionsFile:  "/etc/systemd/system/docker.service.d/10-machine.conf",
+			OsReleaseID:        osReleaseID,
+			OsReleaseVariantID: strings.Split(osReleaseID, "-")[0],
 			Packages: []string{
 				"curl",
 			},

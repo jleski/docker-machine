@@ -12,8 +12,12 @@ func init() {
 
 func NewFedoraProvisioner(d drivers.Driver) Provisioner {
 	return &FedoraProvisioner{
-		NewRedHatProvisioner("fedora", d),
+		NewRedHatProvisioner("workstation-fedora", d),
 	}
+}
+
+func (provisioner *FedoraProvisioner) CompatibleWithHost() bool {
+	return provisioner.OsReleaseInfo.VariantID == provisioner.OsReleaseVariantID
 }
 
 type FedoraProvisioner struct {

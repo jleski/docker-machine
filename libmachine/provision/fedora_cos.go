@@ -23,7 +23,7 @@ func init() {
 
 func NewFedoraCOSProvisioner(d drivers.Driver) Provisioner {
 	return &FedoraCOSProvisioner{
-		NewSystemdProvisioner("fcos", d),
+		NewSystemdProvisioner("coreos-fedora", d),
 	}
 }
 
@@ -40,7 +40,7 @@ func (p *FedoraCOSProvisioner) Package(_ string, _ pkgaction.PackageAction) erro
 }
 
 func (provisioner *FedoraCOSProvisioner) CompatibleWithHost() bool {
-	return provisioner.OsReleaseInfo.ID == provisioner.OsReleaseID || provisioner.OsReleaseInfo.IDLike == provisioner.OsReleaseID
+	return provisioner.OsReleaseInfo.VariantID == provisioner.OsReleaseVariantID
 }
 
 func (p *FedoraCOSProvisioner) GenerateDockerOptions(dockerPort int) (*DockerOptions, error) {

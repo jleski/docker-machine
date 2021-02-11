@@ -13,15 +13,16 @@ import (
 
 type GenericProvisioner struct {
 	SSHCommander
-	OsReleaseID       string
-	DockerOptionsDir  string
-	DaemonOptionsFile string
-	Packages          []string
-	OsReleaseInfo     *OsRelease
-	Driver            drivers.Driver
-	AuthOptions       auth.Options
-	EngineOptions     engine.Options
-	SwarmOptions      swarm.Options
+	OsReleaseID        string
+	OsReleaseVariantID string
+	DockerOptionsDir   string
+	DaemonOptionsFile  string
+	Packages           []string
+	OsReleaseInfo      *OsRelease
+	Driver             drivers.Driver
+	AuthOptions        auth.Options
+	EngineOptions      engine.Options
+	SwarmOptions       swarm.Options
 }
 
 type GenericSSHCommander struct {

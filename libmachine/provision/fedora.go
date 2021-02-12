@@ -12,7 +12,7 @@ func init() {
 
 func NewFedoraProvisioner(d drivers.Driver) Provisioner {
 	return &FedoraProvisioner{
-		NewRedHatProvisioner("workstation-fedora", d),
+		NewRedHatProvisioner("fedora", d),
 	}
 }
 

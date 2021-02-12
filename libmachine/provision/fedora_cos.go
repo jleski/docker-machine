@@ -23,7 +23,7 @@ func init() {
 
 func NewFedoraCOSProvisioner(d drivers.Driver) Provisioner {
 	return &FedoraCOSProvisioner{
-		NewSystemdProvisioner("coreos-fedora", d),
+		NewSystemdProvisioner("fedora", d),
 	}
 }
 

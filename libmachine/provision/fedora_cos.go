@@ -102,12 +102,6 @@ func (p *FedoraCOSProvisioner) Provision(swarmOptions swarm.Options, authOptions
 		return err
 	}
 
-	log.Debug("Configuring local firewall")
-	err = p.configureLocalFirewall()
-	if err != nil {
-		return err
-	}
-
 	log.Debug("Configuring swarm")
 	err = configureSwarm(p, swarmOptions, p.AuthOptions)
 	if err != nil {
@@ -129,14 +123,4 @@ func (p *FedoraCOSProvisioner) dockerDaemonResponding() bool {
 	}
 
 	return true
-}
-
-func (p *FedoraCOSProvisioner) configureLocalFirewall() error {
-	out, err := p.SSHCommand("sudo iptables -A INPUT -p tcp -m tcp --dport 2376 -j ACCEPT")
-	if err != nil {
-		log.Debugf("Iptables output:\n%s", out)
-		return err
-	}
-
-	return nil
 }

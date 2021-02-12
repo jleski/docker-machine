@@ -40,7 +40,7 @@ func (p *FedoraCOSProvisioner) Package(_ string, _ pkgaction.PackageAction) erro
 }
 
 func (provisioner *FedoraCOSProvisioner) CompatibleWithHost() bool {
-	return provisioner.OsReleaseInfo.VariantID == provisioner.OsReleaseVariantID
+	return provisioner.OsReleaseInfo.ID == provisioner.OsReleaseID && provisioner.OsReleaseInfo.VariantID == "coreos"
 }
 
 func (p *FedoraCOSProvisioner) GenerateDockerOptions(dockerPort int) (*DockerOptions, error) {

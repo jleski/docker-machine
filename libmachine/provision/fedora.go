@@ -17,7 +17,7 @@ func NewFedoraProvisioner(d drivers.Driver) Provisioner {
 }
 
 func (provisioner *FedoraProvisioner) CompatibleWithHost() bool {
-	return provisioner.OsReleaseInfo.VariantID == provisioner.OsReleaseVariantID
+	return provisioner.OsReleaseInfo.ID == provisioner.OsReleaseID && provisioner.OsReleaseInfo.VariantID != "coreos"
 }
 
 type FedoraProvisioner struct {

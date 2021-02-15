@@ -5,7 +5,7 @@ COPY . ./
 RUN mkdir bin
 
 RUN echo 'Building static go binary ...'
-RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -mod vendor -o /bin/docker-machine .
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -mod vendor -o /bin/docker-machine ./cmd/docker-machine
 RUN du -sh /bin/
 # Add the previously built app binary to the image
 FROM alpine

@@ -1,5 +1,16 @@
 FROM golang:1.14 AS builder
 
+RUN apt-get update && apt-get install -y --no-install-recommends \
+                openssh-client \
+                rsync \
+                fuse \
+                sshfs \
+        && rm -rf /var/lib/apt/lists/*
+
+RUN go get  golang.org/x/lint/golint \
+            github.com/mattn/goveralls \
+            golang.org/x/tools/cover
+
 WORKDIR $GOPATH/src/gitlab.cern.ch/docker-machine
 COPY . ./
 RUN mkdir bin

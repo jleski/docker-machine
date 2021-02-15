@@ -332,3 +332,5 @@ google.golang.org/protobuf/runtime/protoimpl
 ## explicit
 # gotest.tools v1.4.0
 ## explicit
+# launchpad.net/gocheck v0.0.0-20140225173054-000000000087
+## explicit

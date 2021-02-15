@@ -50,4 +50,5 @@ require (
 	gopkg.in/airbrake/gobrake.v2 v2.0.9 // indirect
 	gopkg.in/gemnasium/logrus-airbrake-hook.v2 v2.1.2 // indirect
 	gotest.tools v1.4.0 // indirect
+	launchpad.net/gocheck v0.0.0-20140225173054-000000000087 // indirect
 )

@@ -8,6 +8,6 @@ RUN echo 'Building static go binary ...'
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -mod vendor -o /bin/docker-machine .
 
 # Add the previously built app binary to the image
-FROM gcr.io/distroless/static:nonroot
+FROM alpine
 WORKDIR /
 COPY --from=builder /bin .

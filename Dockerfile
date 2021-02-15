@@ -10,4 +10,4 @@ RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -mod vendor -o /bin/
 # Add the previously built app binary to the image
 FROM alpine
 WORKDIR /
-COPY --from=builder /bin .
+COPY --from=builder /bin/docker-machine .

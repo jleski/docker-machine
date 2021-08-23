@@ -3,4 +3,5 @@
 .idea/
 /bin/
 cover
-.tmp/vendor/
+.tmp/
+vendor/

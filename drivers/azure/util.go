@@ -1,21 +1,25 @@
 package azure
 
 import (
+	"errors"
 	"fmt"
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/adal"
+	"github.com/Azure/go-autorest/autorest/azure/auth"
 	"io/ioutil"
 	"net"
 	"net/url"
 	"strings"
 
-	"github.com/Azure/azure-sdk-for-go/arm/network"
+	"github.com/Azure/azure-sdk-for-go/profiles/latest/network/mgmt/network"
 	"github.com/Azure/go-autorest/autorest/azure"
 	"github.com/Azure/go-autorest/autorest/to"
-	"github.com/docker/machine/drivers/azure/azureutil"
 	"github.com/docker/machine/drivers/azure/logutil"
 	"github.com/docker/machine/drivers/driverutil"
 	"github.com/docker/machine/libmachine/log"
 	"github.com/docker/machine/libmachine/ssh"
 	"github.com/docker/machine/libmachine/state"
+	"github.com/jleski/docker-machine/drivers/azure/azureutil"
 )
 
 var (
@@ -49,8 +53,9 @@ func (d *Driver) newAzureClient() (*azureutil.AzureClient, error) {
 	}
 
 	var (
-		token *azure.ServicePrincipalToken
-		err   error
+		token      *adal.ServicePrincipalToken
+		err        error
+		authorizer autorest.Authorizer
 	)
 	if d.ClientID != "" && d.ClientSecret != "" { // use Service Principal auth
 		log.Debug("Using Azure service principal authentication.")
@@ -58,14 +63,23 @@ func (d *Driver) newAzureClient() (*azureutil.AzureClient, error) {
 		if err != nil {
 			return nil, fmt.Errorf("Failed to authenticate using service principal credentials: %+v", err)
 		}
-	} else { // use browser-based device auth
-		log.Debug("Using Azure device flow authentication.")
-		token, err = azureutil.AuthenticateDeviceFlow(env, d.SubscriptionID)
-		if err != nil {
-			return nil, fmt.Errorf("Error creating Azure client: %v", err)
+	} else { // try azure cli or fallback to device flow
+		log.Debug("Trying Azure CLI 2.0 authentication...")
+		authorizer, err = auth.NewAuthorizerFromCLI() // Use authentication from Azure CLI
+		if err != nil {                               // use browser-based device auth
+			//return nil, fmt.Errorf("Can't initialize default authorizer: %v", err)
+			log.Debug("Using Azure device flow authentication.")
+			token, err = azureutil.AuthenticateDeviceFlow(env, d.SubscriptionID)
+			if err != nil {
+				return nil, fmt.Errorf("Error creating Azure client: %v", err)
+			}
 		}
 	}
-	return azureutil.New(env, d.SubscriptionID, token), nil
+	if authorizer == nil && token != nil {
+		return azureutil.New(env, d.SubscriptionID, authorizer), nil
+	} else {
+		return nil, errors.New("ERROR: Unable to create azure client.")
+	}
 }
 
 // generateSSHKey creates a ssh key pair locally and saves the public key file

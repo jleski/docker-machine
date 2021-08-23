@@ -3,8 +3,8 @@ package azureutil
 import (
 	"fmt"
 
-	"github.com/Azure/azure-sdk-for-go/arm/compute"
-	"github.com/Azure/azure-sdk-for-go/arm/network"
+	"github.com/Azure/azure-sdk-for-go/profiles/latest/compute/mgmt/compute"
+	"github.com/Azure/azure-sdk-for-go/profiles/latest/network/mgmt/network"
 	"github.com/docker/machine/drivers/azure/logutil"
 	"github.com/docker/machine/libmachine/log"
 )

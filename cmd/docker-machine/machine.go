@@ -11,7 +11,6 @@ import (
 	"github.com/docker/machine/commands"
 	"github.com/docker/machine/commands/mcndirs"
 	"github.com/docker/machine/drivers/amazonec2"
-	"github.com/docker/machine/drivers/azure"
 	"github.com/docker/machine/drivers/digitalocean"
 	"github.com/docker/machine/drivers/exoscale"
 	"github.com/docker/machine/drivers/generic"
@@ -29,6 +28,7 @@ import (
 	"github.com/docker/machine/libmachine/drivers/plugin/localbinary"
 	"github.com/docker/machine/libmachine/log"
 	"github.com/docker/machine/version"
+	"github.com/jleski/docker-machine/drivers/azure"
 )
 
 var AppHelpTemplate = `Usage: {{.Name}} {{if .Flags}}[OPTIONS] {{end}}COMMAND [arg...]

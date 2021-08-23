@@ -9,13 +9,13 @@ import (
 	"net/url"
 	"os"
 
-	"github.com/docker/machine/drivers/azure/azureutil"
 	"github.com/docker/machine/libmachine/drivers"
 	"github.com/docker/machine/libmachine/log"
 	"github.com/docker/machine/libmachine/mcnflag"
 	"github.com/docker/machine/libmachine/state"
+	"github.com/jleski/docker-machine/drivers/azure/azureutil"
 
-	"github.com/Azure/azure-sdk-for-go/arm/storage"
+	"github.com/Azure/azure-sdk-for-go/profiles/latest/storage/mgmt/storage"
 )
 
 const (

@@ -11,10 +11,10 @@ import (
 	"github.com/docker/machine/drivers/azure/logutil"
 	"github.com/docker/machine/libmachine/log"
 
-	"github.com/Azure/azure-sdk-for-go/arm/compute"
-	"github.com/Azure/azure-sdk-for-go/arm/network"
-	"github.com/Azure/azure-sdk-for-go/arm/resources/resources"
-	"github.com/Azure/azure-sdk-for-go/arm/storage"
+	"github.com/Azure/azure-sdk-for-go/profiles/latest/compute/mgmt/compute"
+	"github.com/Azure/azure-sdk-for-go/profiles/latest/network/mgmt/network"
+	"github.com/Azure/azure-sdk-for-go/profiles/latest/resources/mgmt/resources"
+	"github.com/Azure/azure-sdk-for-go/profiles/latest/storage/mgmt/storage"
 	blobstorage "github.com/Azure/azure-sdk-for-go/storage"
 	"github.com/Azure/go-autorest/autorest"
 	"github.com/Azure/go-autorest/autorest/azure"
@@ -50,6 +50,7 @@ type AzureClient struct {
 
 func New(env azure.Environment, subsID string, auth autorest.Authorizer) *AzureClient {
 	return &AzureClient{env, subsID, auth}
+	//return &AzureClient{env, subsID, auth}
 }
 
 // RegisterResourceProviders registers current subscription to the specified

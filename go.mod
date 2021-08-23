@@ -1,11 +1,16 @@
-module gitlab.cern.ch/docker-machine
+module github.com/jleski/docker-machine
 
 go 1.14
 
 require (
-	github.com/Azure/azure-sdk-for-go v5.0.0-beta+incompatible
+	github.com/Azure/azure-sdk-for-go v56.3.0+incompatible
 	github.com/Azure/go-ansiterm v0.0.0-20170929234023-d6e3b3328b78 // indirect
-	github.com/Azure/go-autorest v7.2.1+incompatible
+	github.com/Azure/go-autorest v14.2.0+incompatible // indirect
+	github.com/Azure/go-autorest/autorest v0.11.19
+	github.com/Azure/go-autorest/autorest/adal v0.9.14
+	github.com/Azure/go-autorest/autorest/azure/auth v0.5.8
+	github.com/Azure/go-autorest/autorest/to v0.4.0
+	github.com/Azure/go-autorest/autorest/validation v0.3.1 // indirect
 	github.com/aws/aws-sdk-go v1.36.21
 	github.com/bitly/go-simplejson v0.5.0 // indirect
 	github.com/bmizerany/assert v0.0.0-20160611221934-b7ed37b82869 // indirect
@@ -20,6 +25,8 @@ require (
 	github.com/docker/go-units v0.2.1-0.20151230175859-0bbddae09c5a // indirect
 	github.com/docker/machine v0.16.2
 	github.com/exoscale/egoscale v0.9.23
+	github.com/form3tech-oss/jwt-go v3.2.5+incompatible // indirect
+	github.com/gofrs/uuid v4.0.0+incompatible // indirect
 	github.com/google/go-cmp v0.5.4 // indirect
 	github.com/google/go-querystring v0.0.0-20140804062624-30f7a39f4a21 // indirect
 	github.com/gorilla/mux v1.8.0 // indirect
@@ -36,14 +43,14 @@ require (
 	github.com/samalba/dockerclient v0.0.0-20151231000007-f661dd4754aa
 	github.com/sirupsen/logrus v1.0.4 // indirect
 	github.com/skarademir/naturalsort v0.0.0-20150715044055-69a5d87bef62
-	github.com/stretchr/testify v1.1.4-0.20160221104443-1f4a1643a57e
+	github.com/stretchr/testify v1.3.0
 	github.com/tent/http-link-go v0.0.0-20130702225549-ac974c61c2f9 // indirect
 	github.com/vmware/govcloudair v0.0.2
 	github.com/vmware/govmomi v0.6.2
-	golang.org/x/crypto v0.0.0-20200622213623-75b288015ac9
-	golang.org/x/net v0.0.0-20201202161906-c7110b5ffcbb
+	golang.org/x/crypto v0.0.0-20210817164053-32db794688a5
+	golang.org/x/net v0.0.0-20210226172049-e18ecbb05110
 	golang.org/x/oauth2 v0.0.0-20151117210313-442624c9ec92
-	golang.org/x/sys v0.0.0-20210112080510-489259a85091
+	golang.org/x/sys v0.0.0-20210615035016-665e8c7367d1
 	google.golang.org/api v0.0.0-20180213000552-87a2f5c77b36
 	google.golang.org/appengine v0.0.0-20160205025855-6a436539be38 // indirect
 	google.golang.org/cloud v0.0.0-20151119220103-975617b05ea8 // indirect
